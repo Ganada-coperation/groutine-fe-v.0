@@ -32,6 +32,10 @@ export default defineConfig({
         find: '@home',
         replacement: path.resolve(__dirname, 'src/pages/home'),
       },
+      {
+        find: '@auth',
+        replacement: path.resolve(__dirname, 'src/pages/auth'),
+      },
     ],
   },
 });

@@ -1,8 +1,15 @@
 import styled from "styled-components";
 import IcLogo from "@icon/ic-logo-groutine.svg";
 import KakaoButton from "@auth/components/KakaoButton.tsx";
+import { useNavigate } from "react-router";
 
 export const AuthPage = () => {
+  const navigate = useNavigate();
+
+  const handleNavigate = (type: 'sign-in' | 'sign-up') => {
+    navigate(`/${type}`);
+  };
+
   return (
     <Container>
       <CatchPhrase>암튼 문장</CatchPhrase>
@@ -10,12 +17,12 @@ export const AuthPage = () => {
       <AuthCaseContainer>
         <KakaoButton />
         <Content>
-          <p>이메일로 로그인</p>
+          <p onClick={() => handleNavigate("sign-in")}>이메일로 로그인</p>
           <div>|</div>
-          <p>이메일로 회원가입</p>
+          <p onClick={() => handleNavigate("sign-up")}>이메일로 회원가입</p>
         </Content>
       </AuthCaseContainer>
-      <MediumText>계속 진행함에 따라 <span>이용약관과</span> 개인정보 <span>처리방침</span>에 동의합니다.</MediumText>
+      <MediumText>계속 진행함에 따라 <span>이용약관</span>과 개인정보 <span>처리방침</span>에 동의합니다.</MediumText>
     </Container>
   );
 };
@@ -24,10 +31,9 @@ const Container = styled.div`
   height: 100%;
   display: flex;
   flex-direction: column;
-  background-color: ${({ theme }) => theme.colors.defaultSecondary};
   align-items: center;
   justify-content: flex-end;
-  padding: 0 20px;
+  padding: 10px 20px;
 `;
 
 const CatchPhrase = styled.p`
@@ -67,7 +73,7 @@ const Content = styled.div`
 const MediumText = styled.div`
   font: ${({ theme }) => theme.fonts.detail_medium_12px};
   color: ${({ theme }) => theme.colors.darkGray};
-  
+
   span {
     font: ${({ theme }) => theme.fonts.detail_medium_12px};
     color: #0084ff;

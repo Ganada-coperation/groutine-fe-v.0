@@ -4,17 +4,26 @@ import EmailForm from "@auth/components/EmailForm.tsx";
 import PasswordForm from "@auth/components/PasswordForm.tsx";
 import { useCustomForm } from "@auth/features/utils/useCustomForm.ts";
 import { InputValue, signUpSchema } from "@auth/features";
+import Stepper from "@auth/components/Stepper.tsx";
+import { useState } from "react";
 
 export const SignUpPage = () => {
   const { register, watch } = useCustomForm<InputValue>(signUpSchema);
-  const step1 = false;
-  const step2 = true;
+  const [step, setStep] = useState(1);
+
+  const addStep = () => {
+    setStep(step + 1);
+  };
 
   return (
     <Container>
-      <Logo src={IcLogo} />
-      {step1 ? <EmailForm register={register} watch={watch} /> : null}
-      {step2 ? <PasswordForm register={register} watch={watch} /> : null}
+      <TopContainer>
+        <Stepper totalStep={3} step={step} />
+        <Logo src={IcLogo} />
+      </TopContainer>
+      {step === 1 ? <EmailForm register={register} watch={watch} onClick={addStep} /> : null}
+      {step === 2 ? <PasswordForm register={register} watch={watch} onClick={addStep} /> : null}
+      {step === 3 ? <EmailForm register={register} watch={watch} onClick={addStep} /> : null}
     </Container>
   );
 };
@@ -26,6 +35,14 @@ const Container = styled.div`
   align-content: center;
   justify-content: space-between;
   padding: 10px 20px;
+`;
+
+const TopContainer = styled.div`
+  margin-top: 6px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
 `;
 
 const Logo = styled.img`

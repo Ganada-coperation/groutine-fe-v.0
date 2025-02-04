@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 import { validSignUp, InputValue } from "@auth/features";
 import CustomInput from "@auth/components/CustomInput.tsx";
 import { UseFormWatch } from "react-hook-form";
@@ -10,15 +10,16 @@ interface ActiveProps {
 interface PasswordFormProps {
   register: any;
   watch: UseFormWatch<InputValue>;
+  onClick: () => void;
 }
 
-const PasswordForm = ({ register, watch }: PasswordFormProps) => {
+const PasswordForm = ({ register, watch, onClick }: PasswordFormProps) => {
   const { isPasswordValid, isPasswordConfirmValid } = validSignUp(watch);
 
   return (
     <>
       <PasswordFormContainer>
-        <Section>
+        <Section $isVisible={true}>
           <CustomInput
             label="비밀번호"
             type="password"
@@ -29,7 +30,7 @@ const PasswordForm = ({ register, watch }: PasswordFormProps) => {
           />
           <Notification>{}</Notification>
         </Section>
-        <Section style={{ visibility: isPasswordValid ? 'visible' : 'hidden' }}>
+        <Section $isVisible={isPasswordValid}>
           <CustomInput
             label="비밀번호 확인"
             type="password"
@@ -45,7 +46,8 @@ const PasswordForm = ({ register, watch }: PasswordFormProps) => {
       </PasswordFormContainer>
       <NextButton
         $isActive={isPasswordValid && isPasswordConfirmValid}
-        disabled={isPasswordValid && isPasswordConfirmValid}
+        disabled={!isPasswordValid && !isPasswordConfirmValid}
+        onClick={onClick}
       >
         다음
       </NextButton>
@@ -55,14 +57,48 @@ const PasswordForm = ({ register, watch }: PasswordFormProps) => {
 
 export default PasswordForm;
 
+const slideUp = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
+
+const slideDown = keyframes`
+  from {
+    opacity: 1;
+    transform: translateY(0);
+  }
+  to {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+`;
+
 const PasswordFormContainer = styled.div`
   display: flex;
   flex-direction: column;
 `;
 
-const Section = styled.div`
+const Section = styled.div<{ $isVisible?: boolean }>`
   display: flex;
   flex-direction: column;
+  opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};
+  transform: ${({ $isVisible }) => ($isVisible ? 'translateY(0)' : 'translateY(20px)')};
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+
+  ${({ $isVisible }) =>
+    $isVisible
+      ? css`
+          animation: ${slideUp} 0.3s ease-in-out;
+        `
+      : css`
+          animation: ${slideDown} 0.3s ease-in-out;
+        `}
 `;
 
 const Notification = styled.p`

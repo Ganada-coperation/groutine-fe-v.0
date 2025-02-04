@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { css, keyframes } from "styled-components";
 import { validSignUp, InputValue, useValidation } from "@auth/features";
 import CustomInput from "@auth/components/CustomInput.tsx";
 import { UseFormWatch } from "react-hook-form";
@@ -10,16 +10,17 @@ interface ActiveProps {
 interface EmailFormProps {
   register: any;
   watch: UseFormWatch<InputValue>;
+  onClick: () => void;
 }
 
-const EmailForm = ({ register, watch }: EmailFormProps) => {
+const EmailForm = ({ register, watch, onClick }: EmailFormProps) => {
   const { onSubmit, validation, changeVisibility } = useValidation();
   const { isEmailValid, isCodeValid } = validSignUp(watch);
 
   return (
     <>
       <EmailFormContainer>
-        <Section>
+        <Section $isVisible={true}>
           <CustomInput
             label="이메일"
             type="email"
@@ -37,7 +38,7 @@ const EmailForm = ({ register, watch }: EmailFormProps) => {
             {validation.isCodeSent ? '인증 코드 재전송' : '인증 코드 전송'}
           </ConfirmButton>
         </Section>
-        <Section style={{ visibility: validation.isCodeSent ? 'visible' : 'hidden' }}>
+        <Section style={{ visibility: validation.isCodeSent ? 'visible' : 'hidden' }} $isVisible={validation.isCodeSent}>
           <CustomInput
             label="인증코드"
             type="text"
@@ -57,12 +58,23 @@ const EmailForm = ({ register, watch }: EmailFormProps) => {
           </ConfirmButton>
         </Section>
       </EmailFormContainer>
-      <NextButton $isActive={validation.visible} disabled={validation.visible}>다음</NextButton>
+      <NextButton $isActive={validation.visible} disabled={!validation.visible} onClick={onClick}>다음</NextButton>
     </>
   );
 };
 
 export default EmailForm;
+
+const slideUp = keyframes`
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+`;
 
 const EmailFormContainer = styled.div`
   display: flex;
@@ -70,9 +82,18 @@ const EmailFormContainer = styled.div`
   gap: 24px;
 `;
 
-const Section = styled.div`
+const Section = styled.div<{ $isVisible?: boolean }>`
   display: flex;
   flex-direction: column;
+  opacity: ${({ $isVisible }) => ($isVisible ? 1 : 0)};
+  transform: ${({ $isVisible }) => ($isVisible ? 'translateY(0)' : 'translateY(20px)')};
+  transition: opacity 0.3s ease-in-out, transform 0.3s ease-in-out;
+
+  ${({ $isVisible }) =>
+    $isVisible &&
+    css`
+      animation: ${slideUp} 0.3s ease-in-out;
+    `}
 `;
 
 const Notification = styled.p`

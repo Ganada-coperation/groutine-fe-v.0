@@ -20,7 +20,7 @@ const CustomInput = ({ label, type, maxLength, placeholder, register, registerKe
 
 export default CustomInput;
 
-const Label = styled.span`
+const Label = styled.p`
   font: ${({ theme }) => theme.fonts.body_bold_16px};
   color: ${({ theme }) => theme.colors.darkestPrimary};
 `;

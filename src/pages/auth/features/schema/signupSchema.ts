@@ -5,6 +5,7 @@ export interface InputValue {
   code: string;
   password: string;
   passwordConfirm: string;
+  nickname: string;
 }
 
 export const signUpSchema = z.object({
@@ -21,4 +22,5 @@ export const signUpSchema = z.object({
     .max(20)
     .regex(/[0-9]/)
     .regex(/[^A-Za-z0-9]/),
+  nickname: z.string().min(2).max(12),
 });

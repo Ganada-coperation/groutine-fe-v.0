@@ -6,11 +6,13 @@ export const validSignUp = (watch: UseFormWatch<InputValue>) => {
   const codeValue = watch('code', '');
   const passwordValue = watch('password', '');
   const passwordConfirmValue = watch('passwordConfirm', '');
+  const nicknameValue = watch('nickname', '');
 
   const isEmailValid = signUpSchema.shape.email.safeParse(emailValue).success;
   const isCodeValid = signUpSchema.shape.code.safeParse(codeValue).success;
   const isPasswordValid = signUpSchema.shape.password.safeParse(passwordValue).success;
   const isPasswordConfirmValid = signUpSchema.shape.passwordConfirm.safeParse(passwordConfirmValue).success;
+  const isNicknameValid = signUpSchema.shape.nickname.safeParse(nicknameValue).success;
 
-  return { isEmailValid, isCodeValid, isPasswordValid, isPasswordConfirmValid };
+  return { isEmailValid, isCodeValid, isPasswordValid, isPasswordConfirmValid, isNicknameValid };
 };

@@ -6,13 +6,21 @@ import { useCustomForm } from "@auth/features/utils/useCustomForm.ts";
 import { InputValue, signUpSchema } from "@auth/features";
 import Stepper from "@auth/components/Stepper.tsx";
 import { useState } from "react";
+import UserInfo from "@auth/components/UserInfo.tsx";
+import { useNavigate } from "react-router";
 
 export const SignUpPage = () => {
+  const navigate = useNavigate();
   const { register, watch } = useCustomForm<InputValue>(signUpSchema);
   const [step, setStep] = useState(1);
 
   const addStep = () => {
     setStep(step + 1);
+  };
+
+  const signUp = () => {
+    alert('회원가입이 완료되었습니다.');
+    navigate('/home', { replace: true });
   };
 
   return (
@@ -23,7 +31,7 @@ export const SignUpPage = () => {
       </TopContainer>
       {step === 1 ? <EmailForm register={register} watch={watch} onClick={addStep} /> : null}
       {step === 2 ? <PasswordForm register={register} watch={watch} onClick={addStep} /> : null}
-      {step === 3 ? <EmailForm register={register} watch={watch} onClick={addStep} /> : null}
+      {step === 3 ? <UserInfo register={register} watch={watch} onClick={signUp} /> : null}
     </Container>
   );
 };
@@ -47,5 +55,5 @@ const TopContainer = styled.div`
 
 const Logo = styled.img`
   margin-top: 8px;
-  height: 32px;
+  height: 24px;
 `;

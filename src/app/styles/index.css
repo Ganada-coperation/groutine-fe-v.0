@@ -1,9 +1,25 @@
-/* Header */
+/* 전체 레이아웃 */
+.homepage {
+    display: flex;
+    flex-direction: column;
+    height: 100vh; /* 전체 높이 */
+    overflow: hidden; /* 전체 화면 스크롤 방지 */
+    position: relative;
+}
+
+/* 상단 Header */
 .header {
-    background-color: #024343;
+    background: url('/images/header-background.png.jpg') no-repeat center center;
+    background-size: cover;
+    position: relative;
+    height: 250px; /* 기본 높이 */
+}
+
+.header-overlay {
+    position: absolute;
+    bottom: 20px;
+    left: 20px;
     color: #F9F6F2;
-    padding: 20px;
-    text-align: center;
 }
 
 .header-title {
@@ -19,13 +35,14 @@
 /* Tabs */
 .tabs {
     display: flex;
-    justify-content: center;
-    margin: 20px 0;
+    justify-content: flex-start;
+    margin: 0;
+    padding: 20px;
 }
 
 .tab-button {
     padding: 10px 20px;
-    margin: 0 10px;
+    margin-right: 10px;
     border: none;
     border-radius: 50px;
     background-color: #F9F6F2;
@@ -38,14 +55,17 @@
     color: #F9F6F2;
 }
 
-/* Cards */
+/* Cards Container */
 .cards-container {
-    display: grid;
-    grid-template-columns: repeat(2, 1fr);
-    gap: 20px;
+    flex: 1; /* 중간 영역 차지 */
+    overflow-y: auto; /* 세로 스크롤 활성화 */
     padding: 20px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr); /* 기본 2열 */
+    gap: 20px;
 }
 
+/* Individual Card */
 .card {
     background-color: #F9F6F2;
     border: 1px solid #e5e7eb;
@@ -64,20 +84,6 @@
     padding: 15px;
 }
 
-.card-header {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-}
-
-.card-category {
-    background-color: #f3f4f6;
-    color: #6b7280;
-    padding: 5px 10px;
-    border-radius: 999px;
-    font-size: 12px;
-}
-
 .card-title {
     font-size: 16px;
     font-weight: bold;
@@ -90,12 +96,18 @@
 
 /* Bottom Navigation */
 .bottom-nav {
-    display: flex;
-    justify-content: space-around;
-    padding: 10px 0;
-    background-color: #ffffff;
-    border-top: 1px solid #e5e7eb;
-    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1);
+    position: absolute,fixed; /* 화면 하단에 고정 */
+    bottom: 0;
+    left: 0;
+    width: 100%; /* 부모 컨테이너의 너비를 기준으로 */
+    height: 60px; /* 고정된 높이 */
+    display: flex; /* 아이템을 가로로 배치 */
+    justify-content: space-around; /* 아이템 간 간격 균일하게 */
+    align-items: center; /* 세로 가운데 정렬 */
+    background-color: #ffffff; /* 배경 색상 */
+    border-top: 1px solid #e5e7eb; /* 상단 경계선 */
+    box-shadow: 0 -2px 5px rgba(0, 0, 0, 0.1); /* 그림자 효과 */
+    z-index: 1000; /* 다른 요소보다 위에 표시 */
 }
 
 .nav-item {
@@ -117,13 +129,46 @@
     font-size: 24px;
 }
 
-@media (max-width: 768px) {
+
+/* Media Queries */
+
+/* 스마트폰 */
+@media (max-width: 767px) {
+    .header {
+        height: 200px;
+    }
+
+    .header-title {
+        font-size: 20px;
+    }
+
+    .header-subtitle {
+        font-size: 14px;
+    }
+
+    .cards-container {
+        grid-template-columns: repeat(2, 1fr); /* 한 줄에 한 개 */
+    }
+
+    .card-image {
+        height: 120px;
+    }
+
+    .card-title {
+        font-size: 14px;
+    }
+
+    .tab-button {
+        padding: 8px 16px;
+        font-size: 14px;
+    }
     .bottom-nav {
+        height: 60px; /* 모바일 화면에서 더 작은 높이 */
         padding: 8px 0;
     }
 
     .nav-item {
-        font-size: 12px;
+        font-size: 12px; /* 아이콘 및 텍스트 크기 줄임 */
     }
 
     .nav-item span {
@@ -131,13 +176,83 @@
     }
 }
 
-/* 전체 화면 비율 조정 */
-.homepage {
-    display: flex;
-    flex-direction: column;
-    justify-content: space-between;
-    height: 100vh; /* 전체 화면 높이를 차지 */
-    max-width: 480px; /* 모바일 화면 너비에 맞춤 */
-    margin: 0 auto; /* 가운데 정렬 */
-    overflow: hidden; /* 스크롤 방지 */
+/* 테블릿 세로 */
+@media (min-width: 768px) and (max-width: 991px) {
+    .header {
+        height: 250px;
+    }
+
+    .cards-container {
+        grid-template-columns: repeat(2, 1fr); /* 두 개씩 배치 */
+    }
+    .bottom-nav {
+        height: 70px; /* 테블릿 화면에서 높이 조정 */
+        padding: 10px 0;
+    }
+
+    .nav-item {
+        font-size: 14px; /* 적당한 크기로 조정 */
+    }
+
+    .nav-item span {
+        font-size: 24px;
+    }
+}
+
+/* 테블릿 가로 */
+@media (min-width: 992px) and (max-width: 1199px) {
+    .header {
+        height: 300px;
+    }
+
+    .cards-container {
+        grid-template-columns: repeat(3, 1fr); /* 세 개씩 배치 */
+    }
+    .bottom-nav {
+        height: 80px;
+        padding: 12px 0;
+    }
+
+    .nav-item {
+        font-size: 16px;
+    }
+
+    .nav-item span {
+        font-size: 28px;
+    }
+}
+
+/* 데스크탑 */
+@media (min-width: 1200px) {
+    .header {
+        height: 350px;
+    }
+
+    .header-title {
+        font-size: 28px;
+    }
+
+    .header-subtitle {
+        font-size: 18px;
+    }
+
+    .cards-container {
+        grid-template-columns: repeat(2, 1fr); /* 네 개씩 배치 */
+    }
+
+    .card-image {
+        height: 180px;
+    }
+    .bottom-nav {
+        height: 80px; /* 데스크탑 화면에서 더 넓게 */
+        padding: 15px 0;
+    }
+
+    .nav-item {
+        font-size: 16px; /* 데스크탑에서는 조금 더 큼직하게 */
+    }
+
+    .nav-item span {
+        font-size: 32px;
+    }
 }

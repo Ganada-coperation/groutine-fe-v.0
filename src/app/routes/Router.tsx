@@ -3,7 +3,7 @@ import { createBrowserRouter } from 'react-router';
 import { AuthLayout, RootLayout } from '@app/layout';
 import { HomePage } from "@pages/home";
 import { AuthPage, SignInPage, SignUpPage } from "@pages/auth";
-import { ChallengeDetailPage } from '@pages/challenge/ui/ChallengeDetailPage';
+import { ChallengeDetailPage } from '@pages/home/ui/ChallengeDetailPage';
 
 
 export const router = createBrowserRouter([

@@ -8,10 +8,11 @@ import Stepper from "@auth/components/Stepper.tsx";
 import { useState } from "react";
 import UserInfo from "@auth/components/UserInfo.tsx";
 import { useNavigate } from "react-router";
+import { Container, Logo } from "@shared/style/auth.css.ts";
 
 export const SignUpPage = () => {
   const navigate = useNavigate();
-  const { register, watch } = useCustomForm<InputValue>(signUpSchema);
+  const { register, watch, formState: { errors } } = useCustomForm<InputValue>(signUpSchema);
   const [step, setStep] = useState(1);
 
   const addStep = () => {
@@ -29,21 +30,12 @@ export const SignUpPage = () => {
         <Stepper totalStep={3} step={step} />
         <Logo src={IcLogo} />
       </TopContainer>
-      {step === 1 ? <EmailForm register={register} watch={watch} onClick={addStep} /> : null}
-      {step === 2 ? <PasswordForm register={register} watch={watch} onClick={addStep} /> : null}
-      {step === 3 ? <UserInfo register={register} watch={watch} onClick={signUp} /> : null}
+      {step === 1 ? <EmailForm register={register} watch={watch} onClick={addStep} errors={errors} /> : null}
+      {step === 2 ? <PasswordForm register={register} watch={watch} onClick={addStep} errors={errors} /> : null}
+      {step === 3 ? <UserInfo register={register} watch={watch} onClick={signUp} errors={errors} /> : null}
     </Container>
   );
 };
-
-const Container = styled.div`
-  display: flex;
-  height: 100%;
-  flex-direction: column;
-  align-content: center;
-  justify-content: space-between;
-  padding: 10px 20px;
-`;
 
 const TopContainer = styled.div`
   margin-top: 6px;
@@ -51,9 +43,4 @@ const TopContainer = styled.div`
   flex-direction: column;
   align-items: center;
   gap: 8px;
-`;
-
-const Logo = styled.img`
-  margin-top: 8px;
-  height: 24px;
 `;

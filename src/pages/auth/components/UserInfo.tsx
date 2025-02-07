@@ -1,22 +1,15 @@
 import IcUser from '@icon/ic-user.svg';
 import CustomInput from "@auth/components/CustomInput.tsx";
-import { UseFormWatch } from "react-hook-form";
-import { InputValue, validSignUp } from "@auth/features";
+import { validSignUp } from "@auth/features";
 import styled from "styled-components";
 import { useState } from "react";
+import { AuthProps } from "@shared/types";
+import * as React from "react";
+import { Label, Notification } from "@shared/style/auth.css.ts";
+import { CustomButton } from "@auth/components/CustomButton.tsx";
 
-interface ActiveProps {
-  $isActive: boolean;
-}
-
-interface UserInfoProps {
-  register: any;
-  watch: UseFormWatch<InputValue>;
-  onClick: () => void;
-}
-
-const UserInfo = ({ register, watch, onClick }: UserInfoProps) => {
-  const { isNicknameValid } = validSignUp(watch);
+const UserInfo = ({ register, watch, onClick, errors }: AuthProps) => {
+  const { isNicknameValid, formatDate, dateValue } = validSignUp(watch);
   const [isMale, setIsMale] = useState(true);
   const [preview, setPreview] = useState<string | null>(null);
 
@@ -51,26 +44,27 @@ const UserInfo = ({ register, watch, onClick }: UserInfoProps) => {
           register={register}
           registerKey="nickname"
         />
-        <Notification>{}</Notification>
+        <Notification $isActive={false}>{errors.nickname?.message ? errors.nickname.message : ''}</Notification>
         <Label>생년월일 (8자리)</Label>
-        <DateInput type="date" />
-        <Notification>{}</Notification>
+        <DateInput
+          type="date"
+          value={dateValue}
+          onChange={formatDate}
+          {...register('date')}
+        />
+        <Notification $isActive={false}>{}</Notification>
         <Label>성별</Label>
         <GenderContainer>
-          <GenderButton $isActive={isMale} onClick={() => setIsMale(true)}>남성</GenderButton>
-          <GenderButton $isActive={!isMale} onClick={() => setIsMale(false)}>여성</GenderButton>
+          <CustomButton label="남성" $isActive={isMale} onClick={() => setIsMale(true)} />
+          <CustomButton label="여성" $isActive={!isMale} onClick={() => setIsMale(false)}/>
         </GenderContainer>
       </Inner>
-      <NextButton $isActive={isNicknameValid} disabled={!isNicknameValid} onClick={onClick}>완료</NextButton>
+      <CustomButton $isActive={isNicknameValid} disabled={!isNicknameValid} onClick={onClick} label="완료" />
     </Container>
   );
 };
 
 export default UserInfo;
-
-const Input = styled.input`
-  display: none; /* input 숨기기 */
-`;
 
 const Container = styled.div`
   display: flex;
@@ -92,6 +86,10 @@ const Inner = styled.div`
 const Logo = styled.img`
 `;
 
+const Input = styled.input`
+  display: none; /* input 숨기기 */
+`;
+
 const ImageLabel = styled.label`
   width: 170px;
   height: 170px;
@@ -107,22 +105,6 @@ const ImagePreview = styled.img`
   align-content: center;
   object-fit: cover;
   align-items: center;
-`;
-
-const Label = styled.p`
-  font: ${({ theme }) => theme.fonts.body_bold_16px};
-  color: ${({ theme }) => theme.colors.darkestPrimary};
-  text-align: left;
-`;
-
-const Notification = styled.p`
-  color: ${({ theme }) => theme.colors.lighterPrimary};
-  font: ${({ theme }) => theme.fonts.detail_medium_12px};
-
-  &::after {
-    content: '\\200B'; // 유니코드 Zero-width space
-    display: inline-block;
-  }
 `;
 
 const DateInput = styled.input`
@@ -143,22 +125,4 @@ const GenderContainer = styled.div`
   display: flex;
   justify-content: space-between;
   gap: 7px;
-`;
-
-const GenderButton = styled.button<ActiveProps>`
-  width: 100%;
-  background-color: ${({ theme, $isActive }) => $isActive ? theme.colors.defaultPrimary : theme.colors.darkerSecondary};
-  color: ${({ theme, $isActive }) => $isActive ? theme.colors.defaultSecondary : theme.colors.mediumGray};
-  font: ${({ theme }) => theme.fonts.button_medium_16px};
-  border-radius: 10px;
-  padding: 18px 0;
-`;
-
-const NextButton = styled.button<ActiveProps>`
-  width: 100%;
-  background-color: ${({ theme, $isActive }) => $isActive ? theme.colors.defaultPrimary : theme.colors.darkerSecondary};
-  color: ${({ theme, $isActive }) => $isActive ? theme.colors.defaultSecondary : theme.colors.mediumGray};
-  font: ${({ theme }) => theme.fonts.button_medium_16px};
-  border-radius: 10px;
-  padding: 18px 0;
 `;

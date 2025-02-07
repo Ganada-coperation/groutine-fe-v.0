@@ -1,13 +1,6 @@
 import styled from "styled-components";
-
-interface InputProps {
-  label: string;
-  type: string;
-  maxLength: number;
-  placeholder: string;
-  register: any;
-  registerKey: string;
-}
+import { InputProps } from "@shared/types";
+import { Label } from "@shared/style/auth.css.ts";
 
 const CustomInput = ({ label, type, maxLength, placeholder, register, registerKey }: InputProps) => {
   return (
@@ -19,11 +12,6 @@ const CustomInput = ({ label, type, maxLength, placeholder, register, registerKe
 };
 
 export default CustomInput;
-
-const Label = styled.p`
-  font: ${({ theme }) => theme.fonts.body_bold_16px};
-  color: ${({ theme }) => theme.colors.darkestPrimary};
-`;
 
 const Input = styled.input`
   width: 100%;

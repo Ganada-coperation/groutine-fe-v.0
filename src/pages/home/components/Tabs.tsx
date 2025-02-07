@@ -12,7 +12,7 @@ const Tabs: React.FC = () => {
 
 export default Tabs;
 
-/* ✅ 탭 컨테이너 스타일 */
+
 const TabsContainer = styled.div`
   display: flex;
   justify-content: flex-start;
@@ -25,7 +25,7 @@ const TabsContainer = styled.div`
   }
 `;
 
-/* ✅ 개별 탭 버튼 스타일 */
+
 const TabButton = styled.button`
   padding: 10px 20px;
   margin-right: 10px;

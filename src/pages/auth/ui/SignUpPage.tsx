@@ -5,19 +5,15 @@ import PasswordForm from "@auth/components/PasswordForm.tsx";
 import { useCustomForm } from "@auth/features/utils/useCustomForm.ts";
 import { InputValue, signUpSchema } from "@auth/features";
 import Stepper from "@auth/components/Stepper.tsx";
-import { useState } from "react";
 import UserInfo from "@auth/components/UserInfo.tsx";
 import { useNavigate } from "react-router";
 import { Container, Logo } from "@shared/style/auth.css.ts";
+import { useSignUpStep } from "@auth/features/utils/useSignUpStep.ts";
 
 export const SignUpPage = () => {
   const navigate = useNavigate();
   const { register, watch, formState: { errors } } = useCustomForm<InputValue>(signUpSchema);
-  const [step, setStep] = useState(1);
-
-  const addStep = () => {
-    setStep(step + 1);
-  };
+  const { step, addStep } = useSignUpStep();
 
   const signUp = () => {
     alert('회원가입이 완료되었습니다.');

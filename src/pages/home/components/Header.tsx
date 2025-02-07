@@ -14,7 +14,7 @@ const Header: React.FC = () => {
 
 export default Header;
 
-/* ✅ 헤더 전체 스타일 */
+
 const HeaderContainer = styled.header`
   background: url("/images/header-background.png.jpg") no-repeat center center;
   background-size: cover;
@@ -35,7 +35,7 @@ const HeaderContainer = styled.header`
   }
 `;
 
-/* ✅ 헤더 오버레이 */
+
 const HeaderOverlay = styled.div`
   position: absolute;
   bottom: 20px;
@@ -43,7 +43,7 @@ const HeaderOverlay = styled.div`
   color: #F9F6F2;
 `;
 
-/* ✅ 헤더 타이틀 */
+
 const HeaderTitle = styled.h1`
   font-size: 24px;
   font-weight: bold;
@@ -57,7 +57,6 @@ const HeaderTitle = styled.h1`
   }
 `;
 
-/* ✅ 헤더 서브 타이틀 */
 const HeaderSubtitle = styled.p`
   font-size: 16px;
   margin-top: 5px;

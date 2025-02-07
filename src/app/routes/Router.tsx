@@ -1,9 +1,9 @@
 import { createBrowserRouter } from 'react-router';
 
 import { AuthLayout, RootLayout } from '@app/layout';
-import { HomePage } from "@pages/home";
+import { HomePage, ChallengeDetailPage } from "@pages/home";
 import { AuthPage, SignInPage, SignUpPage } from "@pages/auth";
-import { ChallengeDetailPage } from '@pages/home/ui/ChallengeDetailPage';
+
 
 
 export const router = createBrowserRouter([
@@ -26,7 +26,7 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: "/challenge/:id", // 챌린지 상세 페이지 추가
+    path: "/challenge/:id", 
     element: <ChallengeDetailPage />,
   },
   {
@@ -37,6 +37,7 @@ export const router = createBrowserRouter([
         index: true,
         element: <HomePage />,
       },
+    
     ],
   },
 ]);

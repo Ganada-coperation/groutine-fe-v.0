@@ -22,7 +22,6 @@ const BottomNavigation: React.FC = () => {
 
 export default BottomNavigation;
 
-/* ✅ BottomNavigation 스타일 */
 const Nav = styled.nav`
   width: 100%;
   height: 60px;
@@ -49,7 +48,7 @@ const Nav = styled.nav`
 `;
 
 
-/* ✅ 네비게이션 아이템 스타일 */
+
 const NavItem = styled.div`
   display: flex;
   flex-direction: column;

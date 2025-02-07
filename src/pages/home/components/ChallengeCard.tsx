@@ -41,7 +41,7 @@ const ChallengeCard: React.FC<ChallengeCardProps> = ({
 export default ChallengeCard;
 
 
-/* ✅ 카드 전체 */
+
 const Card = styled.div`
   background-color: #f9f6f2;
   border: 1px solid #e5e7eb;
@@ -56,7 +56,7 @@ const Card = styled.div`
   }
 `;
 
-/* ✅ 카드 이미지 */
+
 const CardImage = styled.img`
   width: 100%;
   height: 150px;
@@ -70,12 +70,12 @@ const CardImage = styled.img`
   }
 `;
 
-/* ✅ 카드 내용 */
+
 const CardContent = styled.div`
   padding: 15px;
 `;
 
-/* ✅ 카드 헤더 */
+
 const CardHeader = styled.div`
   display: flex;
   justify-content: space-between;
@@ -83,7 +83,7 @@ const CardHeader = styled.div`
   margin-bottom: 10px;
 `;
 
-/* ✅ 카테고리 태그 */
+
 const CategoryTag = styled.span`
   background-color: #f3f4f6;
   color: #6b7280;
@@ -93,14 +93,12 @@ const CategoryTag = styled.span`
   font-weight: bold;
 `;
 
-/* ✅ 참가자 수 */
 const Participants = styled.span`
   font-size: 14px;
   color: #6b7280;
   font-weight: bold;
 `;
 
-/* ✅ 카드 제목 */
 const CardTitle = styled.h3`
   font-size: 16px;
   font-weight: bold;
@@ -115,7 +113,7 @@ const CardTitle = styled.h3`
   }
 `;
 
-/* ✅ 카드 날짜 */
+
 const CardDate = styled.p`
   font-size: 14px;
   color: #6b7280;

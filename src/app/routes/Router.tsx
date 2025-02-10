@@ -3,6 +3,7 @@ import { createBrowserRouter } from 'react-router';
 import { AuthLayout, RootLayout } from '@app/layout';
 import { HomePage } from "@pages/home";
 import { AuthPage, SignInPage, SignUpPage } from "@pages/auth";
+import { MissionPage } from "@pages/mission";
 
 export const router = createBrowserRouter([
   {
@@ -30,6 +31,16 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: <HomePage />,
+      },
+    ],
+  },
+  {
+    path: '/mission',
+    element: <RootLayout />,
+    children: [
+      {
+        index: true,
+        element: <MissionPage />,
       },
     ],
   },

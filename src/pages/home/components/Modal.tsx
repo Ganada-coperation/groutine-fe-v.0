@@ -1,4 +1,4 @@
-// groutine-fe-v.0\src\pages\home\components\Modal.tsx
+
 import React from "react";
 import styled from "styled-components";
 

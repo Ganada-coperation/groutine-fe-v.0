@@ -36,6 +36,10 @@ export default defineConfig({
         find: '@auth',
         replacement: path.resolve(__dirname, 'src/pages/auth'),
       },
+      {
+        find: '@mission',
+        replacement: path.resolve(__dirname, 'src/pages/mission'),
+      },
     ],
   },
 });

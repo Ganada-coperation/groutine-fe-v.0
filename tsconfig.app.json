@@ -29,7 +29,8 @@
       "@icon/*": ["shared/assets/icon/*"],
       "@image/*": ["shared/assets/image/*"],
       "@home/*": ["pages/home/*"],
-      "@auth/*": ["pages/auth/*"]
+      "@auth/*": ["pages/auth/*"],
+      "@mission/*": ["pages/mission/*"]
     }
   },
   "include": ["src"]

@@ -1,8 +1,12 @@
 import React from "react";
 import styled from "styled-components";
 
-const ParticipateButton: React.FC = () => {
-  return <Button>참가하기</Button>;
+interface ParticipateButtonProps {
+  onClick: () => void;
+}
+
+const ParticipateButton: React.FC<ParticipateButtonProps> = ({ onClick }) => {
+  return <Button onClick={onClick}>참가하기</Button>;
 };
 
 export default ParticipateButton;

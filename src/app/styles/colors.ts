@@ -15,4 +15,5 @@ export const colors: ColorsTypes = {
   defaultSecondary: '#FFF6EA',
   lighterSecondary: '#FFF9F1',
   lightestSecondary: '#FFFCF8',
+  g1Black: '#171717',
 };

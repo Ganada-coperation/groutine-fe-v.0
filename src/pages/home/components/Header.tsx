@@ -1,70 +1,49 @@
 import React from "react";
 import styled from "styled-components";
+import { useMediaQuery } from 'react-responsive';
 
 const Header: React.FC = () => {
+  const isMobile = useMediaQuery({ maxWidth: 767 });
+  const isTablet = useMediaQuery({ minWidth: 768, maxWidth: 1199 });
+  const isDesktop = useMediaQuery({ minWidth: 1200 });
+
+  // 화면 크기에 따라 동적으로 높이 설정
+  let headerHeight = isMobile ? '180px' : isTablet ? '220px' : '260px';
+
   return (
-    <HeaderContainer>
-      <HeaderOverlay>
+    <HeaderContainer style={{ height: headerHeight }}>
+      <HeaderContent>
         <HeaderTitle>다양한 챌린지에 도전하고</HeaderTitle>
         <HeaderSubtitle>~~~~하세요!</HeaderSubtitle>
-      </HeaderOverlay>
+      </HeaderContent>
     </HeaderContainer>
   );
 };
 
 export default Header;
 
-
 const HeaderContainer = styled.header`
+  position: relative; /* HomePageContainer 내부에서 상대적 위치 */
+  width: 100%;
   background: url("/images/header-background.png.jpg") no-repeat center center;
   background-size: cover;
-  position: relative;
-  height: 250px; /* 기본 높이 */
-
-  @media (max-width: 767px) {
-    height: 200px; /* 모바일 */
-  }
-  @media (min-width: 768px) and (max-width: 991px) {
-    height: 250px; /* 테블릿 세로 */
-  }
-  @media (min-width: 992px) and (max-width: 1199px) {
-    height: 300px; /* 테블릿 가로 */
-  }
-  @media (min-width: 1200px) {
-    height: 350px; /* 데스크탑 */
-  }
+  z-index: 1000;
 `;
 
 
-const HeaderOverlay = styled.div`
+const HeaderContent = styled.div`
   position: absolute;
-  bottom: 20px;
+  bottom: 30px;
   left: 20px;
-  color: #F9F6F2;
+  color: #f9f6f2;
+  font-size: 18px;
 `;
-
 
 const HeaderTitle = styled.h1`
-  font-size: 24px;
   font-weight: bold;
   margin: 0;
-
-  @media (max-width: 767px) {
-    font-size: 20px; /* 모바일 */
-  }
-  @media (min-width: 1200px) {
-    font-size: 28px; /* 데스크탑 */
-  }
 `;
 
 const HeaderSubtitle = styled.p`
-  font-size: 16px;
   margin-top: 5px;
-
-  @media (max-width: 767px) {
-    font-size: 14px; /* 모바일 */
-  }
-  @media (min-width: 1200px) {
-    font-size: 18px; /* 데스크탑 */
-  }
 `;

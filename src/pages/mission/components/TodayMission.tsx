@@ -1,13 +1,14 @@
 import styled from "styled-components";
 import MissionSection from "@mission/components/MissionSection.tsx";
+import { missionResponse } from "@shared/api/mock.ts";
 
 const TodayMission = () => {
   return (
     <TodayMissionContainer>
       <Label>오늘의 미션</Label>
       <Inner>
-      <MissionSection label="필수 미션" content={["독서하고 감상문 작성하기"]} />
-      <MissionSection label="순위권 도전 미션" content={['1만보 달성하기', "하루 식단 인증하기"]} />
+        <MissionSection label="필수 미션" missionResponse={missionResponse.requiredMission} />
+        <MissionSection label="순위권 도전 미션" missionResponse={missionResponse.challengeMission} />
       </Inner>
     </TodayMissionContainer>
   );

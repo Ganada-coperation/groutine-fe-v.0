@@ -3,7 +3,7 @@ import { createBrowserRouter } from 'react-router';
 import { AuthLayout, RootLayout } from '@app/layout';
 import { HomePage } from "@pages/home";
 import { AuthPage, SignInPage, SignUpPage } from "@pages/auth";
-import { MissionPage } from "@pages/mission";
+import { MissionCertificationPage, MissionPage } from "@pages/mission";
 
 export const router = createBrowserRouter([
   {
@@ -41,6 +41,10 @@ export const router = createBrowserRouter([
       {
         index: true,
         element: <MissionPage />,
+      },
+      {
+        path: 'certification',
+        element: <MissionCertificationPage />,
       },
     ],
   },

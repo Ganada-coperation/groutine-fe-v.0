@@ -3,7 +3,7 @@ import { validSignUp } from "@auth/features";
 import CustomInput from "@auth/components/CustomInput.tsx";
 import { AuthProps } from "@shared/types";
 import { Notification, Section } from "@shared/style/auth.css.ts";
-import { CustomButton } from "@auth/components/CustomButton.tsx";
+import { CustomButton } from "@shared/ui/CustomButton.tsx";
 
 const PasswordForm = ({ register, watch, onClick, errors }: AuthProps) => {
   const { isPasswordValid, isPasswordConfirmValid, equalPassword } = validSignUp(watch);

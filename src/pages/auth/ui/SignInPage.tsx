@@ -3,7 +3,7 @@ import IcLogo from "@icon/ic-logo-groutine.svg";
 import CustomInput from "@auth/components/CustomInput.tsx";
 import { useNavigate } from "react-router";
 import { Container, Logo, Notification, Section } from "@shared/style/auth.css.ts";
-import { CustomButton } from "@auth/components/CustomButton.tsx";
+import { CustomButton } from "@shared/ui/CustomButton.tsx";
 
 export const SignInPage = () => {
   const navigate = useNavigate();

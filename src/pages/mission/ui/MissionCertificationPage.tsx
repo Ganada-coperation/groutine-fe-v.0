@@ -1,5 +1,5 @@
 import UploadGuide from "@mission/components/certification/UploadGuide.tsx";
-import { CustomButton } from "@auth/components/CustomButton.tsx";
+import { CustomButton } from "@shared/ui/CustomButton.tsx";
 import ImageUpload from "@mission/components/certification/ImageUpload.tsx";
 import MissionInput from "@mission/components/certification/MissionInput.tsx";
 import styled from "styled-components";
@@ -7,30 +7,41 @@ import AppBar from "@shared/ui/AppBar.tsx";
 import { HeaderAction } from "@shared/types";
 import IcArrowLeft from "@icon/ic-arrow-left.svg";
 import { useNavigate } from "react-router";
+import { useMissionCertification } from "@mission/feature/hooks/useMissionCertification.ts";
+import Popup from "@mission/components/certification/Popup.tsx";
+import { useManagePopup } from "@mission/feature/hooks/useManagePopup.ts";
 
 export const MissionCertificationPage = () => {
+  const { valid, preview, description, handleFileChange, handleDescriptionChange } = useMissionCertification();
+  const { isOpen, openPopup, closePopup } = useManagePopup();
   const navigate = useNavigate();
   const leftHeaderAction: HeaderAction = {
     icon: IcArrowLeft,
     onClick: () => navigate('/mission', { replace: true }),
   };
 
+  const onClick = () => {
+    closePopup();
+    navigate('/mission', { replace: true });
+  }
+
   return (
     <Container>
       <AppBar title="미션 인증" leftHeaderAction={leftHeaderAction} />
       <Section>
-        <ImageUpload />
+        <ImageUpload preview={preview} handleFileChange={handleFileChange} />
         <UploadGuide />
-        <MissionInput />
+        <MissionInput description={description} handleDescriptionChange={handleDescriptionChange} />
       </Section>
       <ButtonContainer>
         <CustomButton
           label="인증완료"
-          $isActive={false}
-          disabled={false}
-          onClick={() => undefined}
+          $isActive={valid}
+          disabled={!valid}
+          onClick={() => openPopup()}
         />
       </ButtonContainer>
+      {isOpen && <Popup onClick={onClick} />}
     </Container>
   );
 };

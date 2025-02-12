@@ -1,18 +1,13 @@
 import IcImage from "@icon/ic-image.svg";
 import * as React from "react";
-import { useState } from "react";
 import styled from "styled-components";
 
-const ImageUpload = () => {
-  const [preview, setPreview] = useState<string | null>(null);
+interface ImageUploadProps {
+  preview: string | null;
+  handleFileChange: (event: React.ChangeEvent<HTMLInputElement>) => void;
+}
 
-  const handleFileChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    if (event.target.files && event.target.files[0]) {
-      const file = event.target.files[0];
-      setPreview(URL.createObjectURL(file));
-    }
-  };
-
+const ImageUpload = ({ preview, handleFileChange }: ImageUploadProps) => {
   return (
     <ImageUploadContainer>
       <ImageLabel htmlFor="profile-upload">

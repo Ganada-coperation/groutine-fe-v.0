@@ -6,7 +6,7 @@ import { useState } from "react";
 import { AuthProps } from "@shared/types";
 import * as React from "react";
 import { Label, Notification } from "@shared/style/auth.css.ts";
-import { CustomButton } from "@auth/components/CustomButton.tsx";
+import { CustomButton } from "@shared/ui/CustomButton.tsx";
 
 const UserInfo = ({ register, watch, onClick, errors }: AuthProps) => {
   const { isNicknameValid, formatDate, dateValue } = validSignUp(watch);

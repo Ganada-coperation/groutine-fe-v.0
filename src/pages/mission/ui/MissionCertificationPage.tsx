@@ -1,5 +1,5 @@
 import UploadGuide from "@mission/components/certification/UploadGuide.tsx";
-import { CustomButton } from "@auth/components/CustomButton.tsx";
+import { CustomButton } from "@shared/ui/CustomButton.tsx";
 import ImageUpload from "@mission/components/certification/ImageUpload.tsx";
 import MissionInput from "@mission/components/certification/MissionInput.tsx";
 import styled from "styled-components";

@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import IcCertification from "@icon/ic-certification.svg";
-import { CustomButton } from "@auth/components/CustomButton.tsx";
+import { CustomButton } from "@shared/ui/CustomButton.tsx";
 
 interface PopupProps {
   onClick: () => void;

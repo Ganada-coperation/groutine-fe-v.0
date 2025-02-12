@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import { Mission } from "@shared/types";
-import MissionItem from "@mission/components/MissionItem.tsx";
+import MissionItem from "@mission/components/mission/MissionItem.tsx";
 import React from "react";
 
 interface MissionSectionProps {

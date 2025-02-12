@@ -1,6 +1,6 @@
-import Banner from "@mission/components/Banner.tsx";
-import TodayMission from "@mission/components/TodayMission.tsx";
-import ChallengeList from "@mission/components/ChallengeList.tsx";
+import Banner from "@mission/components/mission/Banner.tsx";
+import TodayMission from "@mission/components/mission/TodayMission.tsx";
+import ChallengeList from "@mission/components/mission/ChallengeList.tsx";
 import styled from "styled-components";
 
 export const MissionPage = () => {

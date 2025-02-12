@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import Challenge from "@mission/components/Challenge.tsx";
+import Challenge from "@mission/components/mission/Challenge.tsx";
 import { challengeList } from "@shared/api/mock.ts";
 
 const ChallengeList = () => {

@@ -1,5 +1,5 @@
 import styled from "styled-components";
-import MissionSection from "@mission/components/MissionSection.tsx";
+import MissionSection from "@mission/components/mission/MissionSection.tsx";
 import { missionResponse } from "@shared/api/mock.ts";
 
 const TodayMission = () => {

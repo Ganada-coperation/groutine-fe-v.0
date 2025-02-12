@@ -2,13 +2,19 @@ import { Mission } from "@shared/types";
 import IcCheckFill from "@icon/ic-check-fill.svg";
 import IcCheck from "@icon/ic-check.svg";
 import styled from "styled-components";
+import { useNavigate } from "react-router";
 
 const MissionItem = ({ mission }: { mission: Mission }) => {
+  const navigate = useNavigate();
+  const handleClick = () => {
+    navigate('certification');
+  }
+
   return (
     <Inner>
       <img src={mission.completed ? IcCheckFill : IcCheck} alt="" />
       <span>{mission.content}</span>
-      <Button $completed={mission.completed}>미션하기</Button>
+      <Button $completed={mission.completed} disabled={mission.completed} onClick={handleClick}>미션하기</Button>
     </Inner>
   );
 };

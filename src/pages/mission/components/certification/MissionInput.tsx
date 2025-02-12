@@ -1,10 +1,16 @@
 import styled from "styled-components";
+import * as React from "react";
 
-const MissionInput = () => {
+interface MissionInputProps {
+  description: string;
+  handleDescriptionChange: (event: React.ChangeEvent<HTMLTextAreaElement>) => void;
+}
+
+const MissionInput = ({ description, handleDescriptionChange }: MissionInputProps) => {
   return (
     <MissionInputContainer>
       <Label>미션 설명<span>*선택사항</span></Label>
-      <TextArea placeholder="간단한 설명을 작성해 주세요" />
+      <TextArea value={description} onChange={handleDescriptionChange} placeholder="간단한 설명을 작성해 주세요" />
     </MissionInputContainer>
   );
 };

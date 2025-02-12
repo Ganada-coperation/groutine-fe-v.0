@@ -7,27 +7,30 @@ import AppBar from "@shared/ui/AppBar.tsx";
 import { HeaderAction } from "@shared/types";
 import IcArrowLeft from "@icon/ic-arrow-left.svg";
 import { useNavigate } from "react-router";
+import { useMissionCertification } from "@mission/feature/hooks/useMissionCertification.ts";
 
 export const MissionCertificationPage = () => {
+  const { valid, preview, description, handleFileChange, handleDescriptionChange } = useMissionCertification();
   const navigate = useNavigate();
   const leftHeaderAction: HeaderAction = {
     icon: IcArrowLeft,
     onClick: () => navigate('/mission', { replace: true }),
   };
 
+
   return (
     <Container>
       <AppBar title="미션 인증" leftHeaderAction={leftHeaderAction} />
       <Section>
-        <ImageUpload />
+        <ImageUpload preview={preview} handleFileChange={handleFileChange} />
         <UploadGuide />
-        <MissionInput />
+        <MissionInput description={description} handleDescriptionChange={handleDescriptionChange} />
       </Section>
       <ButtonContainer>
         <CustomButton
           label="인증완료"
-          $isActive={false}
-          disabled={false}
+          $isActive={valid}
+          disabled={!valid}
           onClick={() => undefined}
         />
       </ButtonContainer>

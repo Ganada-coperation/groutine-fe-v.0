@@ -1,6 +1,7 @@
 import styled from "styled-components";
 import Challenge from "@mission/components/mission/Challenge.tsx";
 import { challengeList } from "@shared/api/mock.ts";
+import { slideUp } from "@shared/style/auth.css.ts";
 
 const ChallengeList = () => {
   return (
@@ -36,5 +37,6 @@ const Inner = styled.div`
   & > * {
     flex: 0 0 calc(50% - 8px);
     box-sizing: border-box;
+    animation: ${slideUp} 0.5s ease-in-out;
   }
 `;

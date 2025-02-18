@@ -1,16 +1,34 @@
 import React from "react";
 import styled from "styled-components";
 import CraneIcon from "@img/im-challengeparticipate-modal.svg";
+import axios from "axios";
 
-const ChallengeParticipateModalContent: React.FC = () => {
+interface Props {
+  challengeId: number;
+  onParticipateSuccess: (challenge: any) => void; // 콜백 타입 변경
+}
+
+const ChallengeParticipateModalContent: React.FC<Props> = ({ challengeId, onParticipateSuccess }) => {
+  const handleStartChallenge = async () => {
+    try {
+      const response = await axios.post(`/api/v1/challenge/activities/${challengeId}`);
+      // 성공 시 응답 데이터(챌린지 정보)를 콜백으로 전달
+      onParticipateSuccess(response.data.result); 
+    } catch (error) {
+      console.error("챌린지 참여 실패:", error);
+      // 오류 처리 (예: 사용자에게 알림)
+    }
+  };
+
   return (
     <ModalContentContainer>
-      <Logo src = {CraneIcon} /> 
+      <Logo src={CraneIcon} />
       <Title>챌린지 참여가 완료되었어요!</Title>
-      <StartButton>챌린지 시작하기</StartButton>
+      <StartButton onClick={handleStartChallenge}>챌린지 시작하기</StartButton>
     </ModalContentContainer>
   );
 };
+
 
 export default ChallengeParticipateModalContent;
 

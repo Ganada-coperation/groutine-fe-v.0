@@ -30,12 +30,11 @@
       "@img/*": ["shared/assets/img/*"],
       "@home/*": ["pages/home/*"],
       "@auth/*": ["pages/auth/*"],
-<<<<<<< Updated upstream
-      "@mission/*": ["pages/mission/*"]
-=======
-      "@my/*":["pages/my/*"]
->>>>>>> Stashed changes
+      "@mission/*": ["pages/mission/*"],
+      "@my/*": ["pages/my/*"]
     }
   },
   "include": ["src"]
 }
+
+

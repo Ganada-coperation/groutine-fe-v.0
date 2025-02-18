@@ -1,23 +1,25 @@
 import React from 'react';
 import styled from 'styled-components';
 
-
 interface ChallengeCardProps {
-  challenge: any; // Replace 'any' with a more specific type
-  type: 'ongoing' | 'applied' | 'completed';
+    challenge: any; // Replace 'any' with a more specific type
+    type: 'ongoing' | 'applied' | 'completed';
 }
 
 const MyChallengeCard: React.FC<ChallengeCardProps> = ({ challenge, type }) => {
-  return (
-    <MyCardContainer>
-      <MyChallengeImage />
-      <ChallengeTitle>{challenge.title}</ChallengeTitle>
-      <ChallengeDates>{challenge.startDate} - {challenge.endDate}</ChallengeDates>
-      {type === 'ongoing' && <CompletionInfo>달성까지 {challenge.daysLeft}일 남았어요</CompletionInfo>}
-      {type === 'completed' && <CompletionInfo>참여자: {challenge.participants}, 달성률: {challenge.completionRate}%</CompletionInfo>}
-      {type === 'applied' && <CompletionInfo>5일 뒤 진행해요</CompletionInfo>}
-    </MyCardContainer>
-  );
+    // challenge 객체에서 필요한 정보 추출
+    const { title, startDate, endDate, daysLeft, participants, completionRate } = challenge;
+
+    return (
+        <MyCardContainer>
+            <MyChallengeImage />
+            <ChallengeTitle>{title}</ChallengeTitle>
+            <ChallengeDates>{startDate} - {endDate}</ChallengeDates>
+            {type === 'ongoing' && <CompletionInfo>달성까지 {daysLeft}일 남았어요</CompletionInfo>}
+            {type === 'completed' && <CompletionInfo>참여자: {participants}, 달성률: {completionRate}%</CompletionInfo>}
+            {type === 'applied' && <CompletionInfo>5일 뒤 진행해요</CompletionInfo>}
+        </MyCardContainer>
+    );
 };
 
 export default MyChallengeCard;

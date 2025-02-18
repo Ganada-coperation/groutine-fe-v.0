@@ -4,11 +4,25 @@ import ImageSection from "@home/components/ImageSection";
 import ContentSection from "@home/components/ContentSection";
 import ParticipateButton from "@home/components/ParticipateButton";
 import ChallengeHeader from "@home/components/ChallengeHeader";
-import Modal from "@home/components/Modal"; // Modal 컴포넌트 경로 수정
-import ChallengeParticipateModalContent from "@home/components/ChallengeParticipateModalContent"; // Modal 내용 컴포넌트 경로 수정
+import Modal from "@home/components/Modal"; 
+import ChallengeParticipateModalContent from "@home/components/ChallengeParticipateModalContent";
+
+// Challenge 인터페이스 정의
+interface Challenge {
+  id: number;
+  title: string;
+  startDate: string;
+  endDate: string;
+  // 필요한 다른 속성들을 여기에 추가하세요
+}
+
+interface ChallangeDetailProps {
+  onParticipate: (challenge: Challenge) => void;
+}
 
 export const ChallengeDetailPage: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [participatedChallenge, setParticipatedChallenge] = useState<Challenge | null>(null);
 
   const openModal = () => {
     setIsModalOpen(true);
@@ -18,6 +32,11 @@ export const ChallengeDetailPage: React.FC = () => {
     setIsModalOpen(false);
   };
 
+  const handleParticipateSuccess = (challenge: Challenge) => {
+    closeModal();
+    setParticipatedChallenge(challenge);
+  };
+
   return (
     <PageContainer>
       <ChallengeHeader title="챌린지 상세" />
@@ -25,13 +44,19 @@ export const ChallengeDetailPage: React.FC = () => {
         <ImageSection />
         <ContentSection />
       </ContentContainer>
-      <ParticipateButton onClick={openModal} /> {/* ParticipateButton에 onClick 추가 */}
+      <ParticipateButton onClick={openModal} />
       <Modal isOpen={isModalOpen} onClose={closeModal}>
-        <ChallengeParticipateModalContent />
+        <ChallengeParticipateModalContent
+          challengeId={1}
+          onParticipateSuccess={handleParticipateSuccess}
+        />
       </Modal>
     </PageContainer>
   );
 };
+
+// 스타일 컴포넌트는 그대로 유지
+
 
 
 

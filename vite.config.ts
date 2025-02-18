@@ -37,14 +37,14 @@ export default defineConfig({
         replacement: path.resolve(__dirname, 'src/pages/auth'),
       },
       {
-<<<<<<< Updated upstream
         find: '@mission',
         replacement: path.resolve(__dirname, 'src/pages/mission'),
-=======
+      
+      },
+      {
         find: '@my',
         replacement: path.resolve(__dirname, 'src/pages/my'),
->>>>>>> Stashed changes
-      },
+      }
     ],
   },
 });

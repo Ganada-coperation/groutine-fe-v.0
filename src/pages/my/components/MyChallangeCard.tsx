@@ -1,62 +1,170 @@
 import React from 'react';
 import styled from 'styled-components';
+import { Challenge } from '@shared/types/Challenge';
+import { fonts } from '@app/styles/fonts';
+import { colors } from '@app/styles/colors';
+import UserIc from '@shared/assets/icon/ic-mypage-user.svg';
 
 interface ChallengeCardProps {
-    challenge: any; // Replace 'any' with a more specific type
-    type: 'ongoing' | 'applied' | 'completed';
+  challenge: Challenge;
+  type: 'ongoing' | 'applied' | 'completed';
 }
 
 const MyChallengeCard: React.FC<ChallengeCardProps> = ({ challenge, type }) => {
-    // challenge 객체에서 필요한 정보 추출
-    const { title, startDate, endDate, daysLeft, participants, completionRate } = challenge;
+  const { title, startDate, endDate, daysLeft, participants, completionRate, image } = challenge;
 
-    return (
-        <MyCardContainer>
-            <MyChallengeImage />
-            <ChallengeTitle>{title}</ChallengeTitle>
-            <ChallengeDates>{startDate} - {endDate}</ChallengeDates>
-            {type === 'ongoing' && <CompletionInfo>달성까지 {daysLeft}일 남았어요</CompletionInfo>}
-            {type === 'completed' && <CompletionInfo>참여자: {participants}, 달성률: {completionRate}%</CompletionInfo>}
-            {type === 'applied' && <CompletionInfo>5일 뒤 진행해요</CompletionInfo>}
-        </MyCardContainer>
-    );
+  const renderCompletionInfo = () => {
+    if (type === 'ongoing') {
+      return `달성까지 ${daysLeft}일 남았어요`;
+    }
+    if (type === 'applied') {
+      return '5일 뒤 진행해요';
+    }
+    return null;
+  };
+
+  return type === 'completed' ? (
+    <CompletedCardContainer>
+      <CompletedImageWrapper image={image} />
+      <CompletedTextContainer>
+        <Title>{title}</Title>
+        <Dates>{startDate} - {endDate}</Dates>
+        <InfoWrapper>
+          <Participants>
+            <UserIcon src={UserIc} alt="참여자 수" />
+            {participants}
+          </Participants>
+          <CompletionRate>달성률 {completionRate}%</CompletionRate>
+        </InfoWrapper>
+      </CompletedTextContainer>
+    </CompletedCardContainer>
+  ) : (
+    <CardContainer>
+      <ImageWrapper image={image}>
+        <OvalContainer>{renderCompletionInfo()}</OvalContainer>
+      </ImageWrapper>
+      <TextContainer>
+        <Title>{title}</Title>
+        <Dates>{startDate} - {endDate}</Dates>
+      </TextContainer>
+    </CardContainer>
+  );
 };
 
 export default MyChallengeCard;
 
-
-
-const MyCardContainer = styled.div`
-  width: 200px;
-  border: 1px solid #eee;
-  border-radius: 10px;
-  margin-right: 10px;
-  padding: 10px;
-  text-align: left;
-  flex-shrink: 0; /* Prevent cards from shrinking */
+// ✅ 진행 중 & 신청 챌린지 스타일
+const CardContainer = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: ${colors.lightestSecondary};
+  padding-bottom: 11px;
 `;
 
-const MyChallengeImage = styled.div`
+const ImageWrapper = styled.div<{ image: string }>`
   width: 100%;
   height: 120px;
-  background-color: #f0f0f0; /* Placeholder */
   border-radius: 8px;
-  margin-bottom: 8px;
+  background-image: url(${props => props.image});
+  background-size: cover;
+  background-position: center;
+  position: relative;
+  display: flex;
+  justify-content: flex-start;
+  align-items: flex-end;
+  padding: 8px;
+  box-sizing: border-box;
 `;
 
-const ChallengeTitle = styled.h3`
-  font-size: 1em;
+// ✅ 완료된 챌린지 스타일
+const CompletedCardContainer = styled.div`
+  display: flex;
+  flex-direction: row;
+  width: 100%;
+  height: 102px;
+  align-items: center;
+  border-radius: 8px;
+  background: ${colors.lightestSecondary};
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.10);
+  overflow: hidden;
+`;
+
+const CompletedImageWrapper = styled.div<{ image: string }>`
+  width: 106px;
+  height: 102px;
+  border-radius: 8px;
+  background-image: url(${props => props.image});
+  background-size: cover;
+  background-position: center;
+  flex-shrink: 0;
+`;
+
+const CompletedTextContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding-left: 20px;
+  height: 67px;
+  flex: 1;
+`;
+
+// ✅ 공통 스타일
+const OvalContainer = styled.div`
+  background-color: rgba(255, 255, 255, 0.8);
+  color: ${colors.darkestPrimary};
+  font-size: 0.7em;
   font-weight: bold;
+  border-radius: 15px;
+  padding: 3px 8px;
+  position: absolute;
+  top: 8px;
+  left: 8px;
+`;
+
+const TextContainer = styled.div`
+  display: flex;
+  flex-direction: column;
+  padding: 8px 10px;
+`;
+
+const Title = styled.h3`
+  ${fonts.body_bold_16px};
+  color: ${colors.defaultPrimary};
   margin-bottom: 5px;
 `;
 
-const ChallengeDates = styled.p`
-  font-size: 0.8em;
-  color: #777;
-  margin-bottom: 5px;
+const Dates = styled.p`
+  ${fonts.caption_medium_14px};
+  color: ${colors.mediumGray};
 `;
 
-const CompletionInfo = styled.p`
-  font-size: 0.9em;
-  color: #555;
+const InfoWrapper = styled.div`
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  box-sizing: border-box;
+`;
+
+const Participants = styled.div`
+  display: flex;
+  align-items: center;
+  ${fonts.caption_medium_14px};
+  color: ${colors.mediumGray};
+`;
+
+const UserIcon = styled.img`
+  width: 14px;
+  height: 14px;
+  margin-right: 4px;
+`;
+
+const CompletionRate = styled.p`
+  ${fonts.caption_medium_14px};
+  color: ${colors.defaultPrimary};
+  font-weight: bold;
 `;

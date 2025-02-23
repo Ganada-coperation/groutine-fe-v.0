@@ -47,4 +47,8 @@ const Button = styled.button<{ $completed?: boolean }>`
   &:focus {
     border: 1px solid ${({ theme }) => theme.colors.lighterPrimary};
   }
+  
+  &:hover {
+    border: 1px solid ${({ theme }) => theme.colors.lighterPrimary};
+  }
 `;

@@ -3,7 +3,7 @@ import { createBrowserRouter } from 'react-router';
 import { AuthLayout, RootLayout } from '@app/layout';
 import { HomePage } from "@pages/home";
 import { AuthPage, SignInPage, SignUpPage } from "@pages/auth";
-import { MissionCertificationPage, MissionPage } from "@pages/mission";
+import { ChallengePage, MissionCertificationPage, MissionPage } from "@pages/mission";
 
 export const router = createBrowserRouter([
   {
@@ -46,6 +46,10 @@ export const router = createBrowserRouter([
         path: 'certification',
         element: <MissionCertificationPage />,
       },
+      {
+        path: 'challenge/:challengeId',
+        element: <ChallengePage />,
+      }
     ],
   },
 ]);

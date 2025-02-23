@@ -7,7 +7,7 @@ import { useNavigate } from "react-router";
 const MissionItem = ({ mission }: { mission: Mission }) => {
   const navigate = useNavigate();
   const handleClick = () => {
-    navigate('certification');
+    navigate('/mission/certification');
   }
 
   return (

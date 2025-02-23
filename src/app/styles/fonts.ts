@@ -26,6 +26,7 @@ export const fonts: FontsTypes = {
   detail_medium_10px: createFontStyle('Pretendard', 500, 10, 22),
   button_medium_16px: createFontStyle('Pretendard', 500, 16, 24),
   button_semibold_13px: createFontStyle('Pretendard', 600, 13, 16),
+  detail_semibold_12px: createFontStyle('Pretendard', 600, 12, 16),
   detail_regular_14px: createFontStyle('Pretendard', 500, 14, 16),
   detail_regular_10px: createFontStyle('Pretendard', 500, 10, 16),
 };

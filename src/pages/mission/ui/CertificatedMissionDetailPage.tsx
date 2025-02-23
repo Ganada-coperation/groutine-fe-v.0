@@ -4,6 +4,7 @@ import IcArrowLeft from "@icon/ic-arrow-left-light.svg";
 import { HeaderAction } from "@shared/types";
 import { useNavigate } from "react-router";
 import ImgMissionExample from "@img/img-mission-example.png";
+import { motion } from "framer-motion";
 
 export const CertificatedMissionDetailPage = () => {
     const navigate = useNavigate();
@@ -15,10 +16,24 @@ export const CertificatedMissionDetailPage = () => {
 
     return (
       <CertificatedMissionDetailPageContainer>
-        <AppBar leftHeaderAction={leftHeaderAction} title="인증샷" color="lightestSecondary"/>
-        <Inner>
-          <img src={ImgMissionExample} alt="" />
-          <ContentContainer>
+        <AppBar leftHeaderAction={leftHeaderAction} title="인증샷" color="lightestSecondary" />
+        <Inner
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+        >
+          <motion.img
+            src={ImgMissionExample}
+            initial={{ opacity: 0, scale: 0.8 }}
+            animate={{ opacity: 1, scale: 1 }}
+            transition={{ duration: 0.5, delay: 0.2 }}
+            alt=""
+          />
+          <ContentContainer
+            initial={{ opacity: 0, x: -20 }}
+            animate={{ opacity: 1, x: 0 }}
+            transition={{ duration: 0.5, delay: 0.3 }}
+          >
             <Title>{title}<Report onClick={() => alert("신고 완료")}>신고하기</Report></Title>
             <Description>{description}</Description>
           </ContentContainer>
@@ -35,7 +50,7 @@ const CertificatedMissionDetailPageContainer = styled.div`
   height: 100%;
 `;
 
-const Inner = styled.div`
+const Inner = styled(motion.div)`
   flex: 1;
   display: flex;
   flex-direction: column;
@@ -44,7 +59,7 @@ const Inner = styled.div`
   gap: 24px;
 `;
 
-const ContentContainer = styled.div`
+const ContentContainer = styled(motion.div)`
   display: flex;
   flex-direction: column;
   padding: 0 22px 0 37px;

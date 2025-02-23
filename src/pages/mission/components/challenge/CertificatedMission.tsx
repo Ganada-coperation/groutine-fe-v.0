@@ -13,7 +13,7 @@ interface ChallengeProps {
 const CertificatedMission = ({ id, imageUrl }: ChallengeProps) => {
   const navigate = useNavigate();
   const handleNavigate = () => {
-    navigate(`challenge/${id}`);
+    navigate(`${id}`);
   };
 
   return (

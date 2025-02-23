@@ -6,7 +6,6 @@ import styled from "styled-components";
 import AppBar from "@shared/ui/AppBar.tsx";
 import { HeaderAction } from "@shared/types";
 import IcArrowLeft from "@icon/ic-arrow-left.svg";
-import { useNavigate } from "react-router";
 import { useMissionCertification } from "@mission/feature/hooks/useMissionCertification.ts";
 import Popup from "@mission/components/certification/Popup.tsx";
 import { useManagePopup } from "@mission/feature/hooks/useManagePopup.ts";
@@ -14,15 +13,14 @@ import { useManagePopup } from "@mission/feature/hooks/useManagePopup.ts";
 export const MissionCertificationPage = () => {
   const { valid, preview, description, handleFileChange, handleDescriptionChange } = useMissionCertification();
   const { isOpen, openPopup, closePopup } = useManagePopup();
-  const navigate = useNavigate();
   const leftHeaderAction: HeaderAction = {
     icon: IcArrowLeft,
-    onClick: () => navigate('/mission', { replace: true }),
+    onClick: () => window.history.back(),
   };
 
   const onClick = () => {
     closePopup();
-    navigate('/mission', { replace: true });
+    window.history.back();
   }
 
   return (

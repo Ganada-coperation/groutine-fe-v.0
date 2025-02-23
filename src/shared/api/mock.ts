@@ -1,5 +1,5 @@
-import ImgExample from "@img/img-example.png"
-import { ChallengeResponse, MissionResponse } from "@shared/types";
+import ImgExample from "@img/img-example.png";
+import { ChallengeProgressListResponse, ChallengeResponse, MissionResponse } from "@shared/types";
 
 export const challengeList: ChallengeResponse[] = [
   {
@@ -68,6 +68,8 @@ export const challengeList: ChallengeResponse[] = [
   },
 ];
 
+
+// todo: 둘다  배열임
 export const missionResponse: MissionResponse = {
   requiredMission: {
     id: 0,
@@ -84,6 +86,103 @@ export const missionResponse: MissionResponse = {
       id: 1,
       content: "1만보 달성하기",
       completed: false,
+    },
+  ],
+};
+
+export const challengeProgressListResponse: ChallengeProgressListResponse = {
+  challengeProgressList: [
+    {
+      date: '2024.06.01',
+      verifyStatus: 'APPROVE',
+    },
+    {
+      date: '2024.06.02',
+      verifyStatus: 'APPROVE',
+    },
+    {
+      date: '2024.06.03',
+      verifyStatus: 'APPROVE',
+    },
+    {
+      date: '2024.06.04',
+      verifyStatus: 'APPROVE',
+    },
+    {
+      date: '2024.06.05',
+      verifyStatus: 'APPROVE',
+    },
+    {
+      date: '2024.06.06',
+      verifyStatus: 'REJECT',
+    },
+    {
+      date: '2024.06.07',
+      verifyStatus: 'REJECT',
+    },
+    {
+      date: '2024.06.08',
+      verifyStatus: 'REJECT',
+    },
+    {
+      date: '2024.06.09',
+      verifyStatus: 'REJECT',
+    },
+    {
+      date: '2024.06.10',
+      verifyStatus: 'APPROVE',
+    },
+    {
+      date: '2024.06.11',
+      verifyStatus: 'APPROVE',
+    },
+    {
+      date: '2024.06.12',
+      verifyStatus: 'APPROVE',
+    },
+    {
+      date: '2024.06.13',
+      verifyStatus: 'REJECT',
+    },
+    {
+      date: '2024.06.14',
+      verifyStatus: 'REJECT',
+    },
+    {
+      date: '2024.06.15',
+      verifyStatus: 'APPROVE',
+    },
+    {
+      date: '2024.06.16',
+      verifyStatus: 'REJECT',
+    },
+    {
+      date: '2024.06.17',
+      verifyStatus: 'WAIT',
+    },
+    {
+      date: '2024.06.18',
+      verifyStatus: 'REJECT',
+    },
+    {
+      date: '2024.06.19',
+      verifyStatus: 'APPROVE',
+    },
+    {
+      date: '2024.06.20',
+      verifyStatus: 'REJECT',
+    },
+    {
+      date: '2024.06.21',
+      verifyStatus: 'APPROVE',
+    },
+    {
+      date: '2024.06.22',
+      verifyStatus: 'APPROVE',
+    },
+    {
+      date: '2024.06.23',
+      verifyStatus: 'WAIT',
     },
   ],
 };

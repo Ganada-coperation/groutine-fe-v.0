@@ -1,6 +1,8 @@
 import styled from "styled-components";
+import { useNavigate } from "react-router";
 
 interface ChallengeProps {
+  id: number;
   title: string;
   dDay: number;
   imageUrl?: string;
@@ -8,9 +10,14 @@ interface ChallengeProps {
   endDate: string;
 }
 
-const Challenge = ({ title, dDay, endDate, startDate, imageUrl }: ChallengeProps) => {
+const Challenge = ({ id, title, dDay, endDate, startDate, imageUrl }: ChallengeProps) => {
+  const navigate = useNavigate();
+  const handleNavigate = () => {
+    navigate(`challenge/${id}`);
+  };
+
   return (
-    <ChallengeContainer>
+    <ChallengeContainer onClick={handleNavigate}>
       <StyledImg src={imageUrl} alt="" />
       <DDay>D-{dDay}</DDay>
       <Inner>

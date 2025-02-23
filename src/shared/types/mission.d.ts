@@ -18,3 +18,18 @@ export interface MissionResponse {
   requiredMission: Mission;
   challengeMission: Mission[];
 }
+
+export const VerifyStatus: Record<string, boolean> = {
+  "WAIT": false,
+  "APPROVE": true,
+  "REJECT": false,
+};
+
+export interface ChallengeProgressResponse {
+  date: string;
+  verifyStatus: string;
+}
+
+export interface ChallengeProgressListResponse {
+  challengeProgressList: ChallengeProgressResponse[];
+}

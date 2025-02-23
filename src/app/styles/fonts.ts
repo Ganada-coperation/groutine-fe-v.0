@@ -13,6 +13,7 @@ export const fonts: FontsTypes = {
   heading_bold_22px: createFontStyle('Pretendard', 700, 22, 34),
   heading_bold_18px: createFontStyle('Pretendard', 700, 18, 34),
   heading_semibold_18px: createFontStyle('Pretendard', 600, 18, 22),
+  heading_semibold_16px: createFontStyle('Pretendard', 600, 16, 22),
   heading_medium_20px: createFontStyle('Pretendard', 500, 20, 34),
   heading_medium_18px: createFontStyle('Pretendard', 500, 18, 34),
   body_bold_20px: createFontStyle('Pretendard', 700, 20, 24),

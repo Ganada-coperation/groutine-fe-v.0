@@ -1,2 +1,3 @@
 export { MissionPage } from '@mission/ui/MissionPage';
 export { MissionCertificationPage } from '@mission/ui/MissionCertificationPage';
+export { ChallengePage } from '@mission/ui/ChallengePage';

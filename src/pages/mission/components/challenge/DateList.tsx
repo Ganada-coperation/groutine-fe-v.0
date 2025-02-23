@@ -4,7 +4,14 @@ import IcStar from "@icon/ic-star.svg";
 import IcStarTrue from "@icon/ic-star-true.svg";
 import { useEffect, useRef } from "react";
 import styled from "styled-components";
-import { useChallengeDateStore } from "@mission/feature/useChallengeDateStore.ts";
+import { useChallengeDateStore } from "@mission/feature/store/useChallengeDateStore.ts";
+import { motion } from "framer-motion";
+
+const itemVariants = {
+  hidden: { opacity: 0, scale: 0.8 },
+  visible: { opacity: 1, scale: 1, transition: { duration: 2 } },
+};
+
 
 const DateList = () => {
   const dayListRef = useRef<HTMLDivElement>(null);
@@ -22,7 +29,12 @@ const DateList = () => {
   return (
     <DayList ref={dayListRef}>
       {challengeProgressListResponse.challengeProgressList.map((challengeProgressResponse, index) =>
-        <DayContainer key={index} onClick={() => data.index !== index ? setData({
+        <DayContainer
+          key={index}
+          variants={itemVariants}
+          initial="hidden"
+          animate="visible"
+          onClick={() => data.index !== index ? setData({
           index: index,
           date: challengeProgressResponse.date,
         }) : undefined}>
@@ -40,6 +52,15 @@ const DateList = () => {
 
 export default DateList;
 
+const DayList = styled.div`
+  display: flex;
+  flex-direction: row;
+  gap: 12px;
+  padding: 0 20px;
+  overflow-x: scroll;
+`;
+
+
 const Image = styled.img<{ $status: boolean, $isClicked: boolean }>`
   padding: 10px;
   border-radius: 50%;
@@ -51,19 +72,11 @@ const Image = styled.img<{ $status: boolean, $isClicked: boolean }>`
                        }) => ($status ? $isClicked ? theme.colors.lighterPrimary : theme.colors.lightestestPrimary : $isClicked ? theme.colors.lighterPrimary : theme.colors.defaultSecondary)};
 `;
 
-const DayContainer = styled.div`
+const DayContainer = styled(motion.div)`
   display: flex;
   flex-direction: column;
   align-items: center;
   gap: 6px;
-`;
-
-const DayList = styled.div`
-  display: flex;
-  flex-direction: row;
-  gap: 12px;
-  padding: 0 20px;
-  overflow-x: scroll;
 `;
 
 const Day = styled.span`

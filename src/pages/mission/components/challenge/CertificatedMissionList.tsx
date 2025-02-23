@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { challengeList } from "@shared/api/mock.ts";
 import { slideUp } from "@shared/style/auth.css.ts";
 import CertificatedMission from "@mission/components/challenge/CertificatedMission.tsx";
@@ -22,9 +22,21 @@ const Container = styled.div`
   width: 100%;
 `;
 
+const scaleUp = keyframes`
+  from {
+    transform: scale(0.9);
+    opacity: 0;
+  }
+  to {
+    transform: scale(1);
+    opacity: 1;
+  }
+`;
+
 const Label = styled.p`
   font: ${({ theme }) => theme.fonts.heading_semibold_18px};
   color: ${({ theme }) => theme.colors.g1Black};
+  animation: ${scaleUp} 0.5s ease-in-out;
 `;
 
 const Inner = styled.div`

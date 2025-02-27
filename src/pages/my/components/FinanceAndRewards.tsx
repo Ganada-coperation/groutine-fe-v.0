@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import FinanceIc from '@icon/ic-mypage-finance.svg';
-import RewardIc from '@icon/ic-mypage-reward.svg';
+import FinanceIc from '@shared/assets/icon/ic-mypage-finance.svg';
+import RewardIc from '@shared/assets/icon/ic-mypage-reward.svg';
+import { colors } from '@app/styles/colors';
+import { fonts } from '@app/styles/fonts';
 
 const FinanceAndRewards = () => {
   return (
@@ -12,7 +14,7 @@ const FinanceAndRewards = () => {
         </IconWrapper>
         결제내역
       </SectionButton>
-      <Divider/>
+      <Divider />
       <SectionButton>
         <IconWrapper>
           <RewardIcon src={RewardIc} iconSize="60px" alt="Reward Icon" />
@@ -26,18 +28,18 @@ const FinanceAndRewards = () => {
 export default FinanceAndRewards;
 
 const FinanceRewardsContainer = styled.div`
- position: relative;
+  position: relative;
   display: flex;
   justify-content: space-around;
   padding: 15px 0;
   border-radius: 20px;
-  background-color: #fffCf8;
+  background-color: ${colors.lightestSecondary};
   margin-bottom: 20px;
   box-shadow: 0 0 10px rgba(0, 0, 0, 0.25);
 `;
 
 const SectionButton = styled.button`
- position: relative;
+  position: relative;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -46,47 +48,43 @@ const SectionButton = styled.button`
   border-radius: 50px;
   background-color: transparent;
   cursor: pointer;
-  color: #6B778C;
+  color: ${colors.defaultPrimary};
   font-size: 15px;
   font-weight: 700;
-  
 
   &:hover {
     opacity: 0.8;
   }
-
 `;
 
 const IconWrapper = styled.div`
   width: 60px;
   height: 60px;
   border-radius: 50%;
-  background-color: #D8DDE6;
+  background-color: ${colors.lightestestPrimary};
   display: flex;
   justify-content: center;
   align-items: center;
   margin-bottom: 5px;
 `;
 
-// 타입 정의 추가
 interface IconProps {
-  src: string; // 이미지 경로
-  iconSize?: string; // 아이콘 크기 (선택적)
+  src: string;
+  iconSize?: string;
 }
 
-// 커스텀 속성 처리
 const FinanceIcon = styled.img.attrs<IconProps>((props) => ({
-  style: { width: props.iconSize || '40px' }, // 동적으로 크기 설정
+  style: { width: props.iconSize || '40px' },
 }))<IconProps>`
-  height: auto; /* 비율 유지 */
+  height: auto;
 `;
 
 const RewardIcon = styled.img.attrs<IconProps>((props) => ({
-  style: { width: props.iconSize || '24px' }, // 동적으로 크기 설정
+  style: { width: props.iconSize || '24px' },
 }))<IconProps>`
-  height: auto; /* 비율 유지 */
+  height: auto;
 `;
-// 구분선 스타일
+
 const Divider = styled.div`
   position: absolute;
   top: 50%;
@@ -94,5 +92,5 @@ const Divider = styled.div`
   transform: translate(-50%, -50%);
   width: 1px;
   height: 60%;
-  background-color: #D8DDE6;
+  background-color: ${colors.lightestestPrimary};
 `;

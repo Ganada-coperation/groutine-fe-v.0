@@ -3,7 +3,7 @@ import styled from 'styled-components';
 import MyChallengeCard from "./MyChallangeCard";
 import { fonts } from '@app/styles/fonts';
 import { colors } from '@app/styles/colors';
-import { Challenge } from '@shared/types/Challenge';
+import { Challenge } from '@shared/types/challenge';
 import { slideUp } from "@shared/style/auth.css.ts";
 
 interface ChallengeSectionProps {

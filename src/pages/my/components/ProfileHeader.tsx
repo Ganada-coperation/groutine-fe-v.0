@@ -1,7 +1,9 @@
 import React from 'react';
 import styled from 'styled-components';
-import UserIc from '@icon/ic-mypage-user.svg';
-import EditIc from '@icon/ic-mypage-edit.svg';
+import UserIc from '@shared/assets/icon/ic-mypage-user.svg';
+import EditIc from '@shared/assets/icon/ic-mypage-edit.svg';
+import { fonts } from '@app/styles/fonts';
+import { colors } from '@app/styles/colors';
 
 interface ProfileHeaderProps {
   username: string;
@@ -29,14 +31,13 @@ const Header = styled.div`
   display: flex;
   flex-direction: column;
   padding-bottom: 20px;
-  border-bottom: 1px solid #eee;
+  border-bottom: 1px solid ${colors.lightGray};
   margin-bottom: 20px;
 `;
 
 const Title = styled.h2`
-  font-size: 20px;
-  font-weight: 700;
-  color: #02343f;
+  ${fonts.heading_bold_20px};
+  color: ${colors.defaultPrimary};
   margin-bottom: 16px;
 `;
 
@@ -64,21 +65,20 @@ const Username = styled.span`
 `;
 
 const EditButton = styled.button`
-  font-size: 14px;
-  font-weight: 700;
-  color: #02343f;
+  ${fonts.button_medium_16px};
+  color: ${colors.defaultPrimary};
   padding: 8px 12px;
-  border: 3px solid #02343f;
+  border: 3px solid ${colors.defaultPrimary};
   border-radius: 50px;
-  background-color: #fff;
+  background-color: ${colors.lightestSecondary};
   cursor: pointer;
   display: flex;
   align-items: center;
   gap: 5px;
 
   &:hover {
-    background-color: #fffCf8;
-    border-color: #bbb;
+    background-color: ${colors.lighterSecondary};
+    border-color: ${colors.lightGray};
   }
 `;
 

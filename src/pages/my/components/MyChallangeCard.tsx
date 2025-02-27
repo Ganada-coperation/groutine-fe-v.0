@@ -1,6 +1,7 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Challenge } from '@shared/types/Challenge';
+import { useNavigate } from 'react-router';
+import { Challenge } from '@shared/types/challenge';
 import { fonts } from '@app/styles/fonts';
 import { colors } from '@app/styles/colors';
 import UserIc from '@shared/assets/icon/ic-mypage-user.svg';
@@ -11,7 +12,23 @@ interface ChallengeCardProps {
 }
 
 const MyChallengeCard: React.FC<ChallengeCardProps> = ({ challenge, type }) => {
-  const { title, startDate, endDate, daysLeft, participants, completionRate, image } = challenge;
+  const { id, title, startDate, endDate, daysLeft, participants, completionRate, image } = challenge;
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    switch(type) {
+      case 'ongoing':
+        navigate(`/my/challenge/ongoing/${id}`);
+        break;
+      case 'applied':
+        navigate(`/my/challenge/applied/${id}`);
+        break;
+      case 'completed':
+        navigate(`/my/challenge/completed/${id}`);
+        break;
+    }
+  }
+
 
   const renderCompletionInfo = () => {
     if (type === 'ongoing') {
@@ -24,7 +41,7 @@ const MyChallengeCard: React.FC<ChallengeCardProps> = ({ challenge, type }) => {
   };
 
   return type === 'completed' ? (
-    <CompletedCardContainer>
+    <CompletedCardContainer onClick={handleClick}>
       <CompletedImageWrapper image={image} />
       <CompletedTextContainer>
         <Title>{title}</Title>
@@ -39,7 +56,7 @@ const MyChallengeCard: React.FC<ChallengeCardProps> = ({ challenge, type }) => {
       </CompletedTextContainer>
     </CompletedCardContainer>
   ) : (
-    <CardContainer>
+    <CardContainer onClick={handleClick}>
       <ImageWrapper image={image}>
         <OvalContainer>{renderCompletionInfo()}</OvalContainer>
       </ImageWrapper>

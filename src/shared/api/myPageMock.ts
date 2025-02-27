@@ -1,5 +1,5 @@
 import ImgExample from "@img/img-example.png"
-import { Challenge } from "@shared/types/Challenge";
+import { Challenge } from "@shared/types/challenge";
 
 export const ongoingChallenges: Challenge[] = [
   { id: 1, title: '불타오르는 유산소🔥', startDate: '2024.06.01', endDate: '2024.08.02', daysLeft: 5, image: ImgExample },

@@ -5,7 +5,7 @@ import { AuthLayout, RootLayout } from '@app/layout';
 import { HomePage, ChallengeDetailPage } from "@pages/home";
 import { AuthPage, SignInPage, SignUpPage } from "@pages/auth";
 import { MissionCertificationPage, MissionPage } from "@pages/mission";
-import { MyPage } from '@pages/my';
+import { MyPage, OngoingChallengeDetail, CompletedChallengeDetail, AppliedChallengeDetail } from '@pages/my';
 
 export const router = createBrowserRouter([
   {
@@ -27,40 +27,25 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: "/challenge/:id",
-    element: <ChallengeDetailPage />,
-  },
-  {
-    path: '/home',
     element: <RootLayout />,
     children: [
+      { path: '/home', element: <HomePage /> },
+      { path: '/challenge/:id', element: <ChallengeDetailPage /> },
       {
-        index: true,
-        element: <HomePage />,
-      },
-    ],
-  },
-  {
-    path: '/mission',
-    element: <RootLayout />,
-    children: [
-      {
-        index: true,
-        element: <MissionPage />,
+        path: '/mission',
+        children: [
+          { index: true, element: <MissionPage /> },
+          { path: 'certification', element: <MissionCertificationPage /> },
+        ],
       },
       {
-        path: 'certification',
-        element: <MissionCertificationPage />,
-      },
-    ],
-  },
-  {
-    path: '/my',
-    element: <RootLayout />,
-    children: [
-      {
-        index: true,
-        element: <MyPage />,
+        path: '/my',
+        children: [
+          { index: true, element: <MyPage /> },
+          { path: 'challenge/ongoing/:id', element: <OngoingChallengeDetail /> },
+          { path: 'challenge/applied/:id', element: <AppliedChallengeDetail /> },
+          { path: 'challenge/completed/:id', element: <CompletedChallengeDetail /> },
+        ],
       },
     ],
   },
